@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Meu Store | Catálogo Premium Infantojuvenil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Janela de Login Inicial (Modal Popup) -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-close-x" onclick="fecharLogin()">&times;</button>
+            <div class="modal-header">
+                <img src="logo.png" alt="Mundo Meu Store" class="modal-logo" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=150&q=80'">
+                <h3>Mundo Meu Store</h3>
+                <p>Faça seu login para acompanhar seus pedidos e ter uma experiência personalizada.</p>
+            </div>
+            <form onsubmit="event.preventDefault(); fecharLogin();">
+                <div class="form-group-modal">
+                    <label for="modal-email">E-mail ou Telefone:</label>
+                    <input type="text" id="modal-email" placeholder="Digite seu e-mail ou celular">
+                </div>
+                <div class="form-group-modal">
+                    <label for="modal-senha">Senha:</label>
+                    <input type="password" id="modal-senha" placeholder="Digite sua senha">
+                </div>
+                <button type="submit" class="btn-modal-login">Entrar</button>
+            </form>
+            <button class="btn-modal-skip" onclick="fecharLogin()">Agora não</button>
+        </div>
+    </div>
+
+    <!-- Cabeçalho Elegante com Nome da Loja Bem Distribuído -->
+    <header>
+        <div class="container header-container">
+            <div class="logo-brand-wrapper">
+                <img src="logo.png" alt="Mundo Meu Store Logo" class="logo-img" onerror="this.src='https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=150&q=80'">
+                <h1 class="brand-title">Mundo Meu <span class="brand-sub">Store</span></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#catalogo">Catálogo</a>
+                <a href="#faq">Dúvidas</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#carrinho-secao" class="cart-nav-link">
+                    <i class="fa-solid fa-bag-shopping"></i> Sacola (<span id="cart-count">0</span>)
+                </a>
+                <a href="https://www.instagram.com/mundo_meu_store" target="_blank" class="btn-instagram-header">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="badge">Universo Infantil & Juvenil</span>
+                <h2>O aconchego e estilo que vestem o seu mundo.</h2>
+                <p>Nossa loja física está de portas abertas na <strong>Cidade Nobre</strong> esperando por você. Explore nosso catálogo online completo abaixo, monte seu carrinho e finalize direto pelo WhatsApp de forma fluida.</p>
+                <div class="hero-buttons">
+                    <a href="#catalogo" class="btn-main-action">Explorar Catálogo</a>
+                    <a href="https://wa.me/5531984992275" target="_blank" class="btn-whatsapp-action"><i class="fab fa-whatsapp"></i> Chamar Loja</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=600&q=80" alt="Mundo Meu Store" class="main-hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização e Google Maps -->
+    <section class="creative-address-section">
+        <div class="container">
+            <div class="address-card">
+                <div class="address-main-info">
+                    <div class="address-icon-box">
+                        <i class="fa-solid fa-shop"></i>
+                    </div>
+                    <div class="address-details">
+                        <span>NOSSA LOCALIZAÇÃO</span>
+                        <h3>Visite Nossa Loja Física</h3>
+                        <p>Av. Carlos Chagas, 504 - Loja 03 — Bairro Cidade Nobre, Ipatinga/MG</p>
+                        <small>✨ Venha conhecer de perto nossas coleções apaixonantes.</small>
+                    </div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Av.+Carlos+Chagas,+504+-+Loja+03+-+Cidade+Nobre,+Ipatinga+-+MG" target="_blank" class="btn-maps-action">
+                    <i class="fa-solid fa-map-location-dot"></i> Abrir no Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção do Catálogo Flutuante com Barra de Busca -->
+    <section id="catalogo" class="catalog-section">
+        <div class="container">
+            <div class="catalog-floating-container">
+                <div class="section-title">
+                    <h2>Nosso Catálogo</h2>
+                    <p>Selecione as peças favoritas e monte o look perfeito</p>
+                </div>
+
+                <!-- CAMPO DE BUSCA PRÁTICO -->
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="catalog-search" placeholder="Buscar por peça, categoria ou gênero (ex: vestido, masculino, jeans)..." onkeyup="filtrarCatalogo()">
+                </div>
+
+                <div class="catalog-grid" id="products-grid">
+                    <!-- Peça 1: Masculino -->
+                    <div class="product-card" data-name="camisa polo classic boy masculino">
+                        <span class="product-tag mas">Masculino</span>
+                        <img src="https://images.unsplash.com/photo-1471286174243-e7a4d9afb3cf?auto=format&fit=crop&w=400&q=80" alt="Camisa Polo">
+                        <h3>Camisa Polo Classic Boy</h3>
+                        <div class="price">R$ 79,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Camisa Polo Classic Boy', 79.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 2: Masculino -->
+                    <div class="product-card" data-name="bermuda cargo explorer masculino">
+                        <span class="product-tag mas">Masculino</span>
+                        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=400&q=80" alt="Bermuda Cargo">
+                        <h3>Bermuda Cargo Explorer</h3>
+                        <div class="price">R$ 89,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Bermuda Cargo Explorer', 89.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 3: Masculino -->
+                    <div class="product-card" data-name="jaqueta bomber urban masculino juvenil">
+                        <span class="product-tag mas">Juvenil Masc</span>
+                        <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=400&q=80" alt="Jaqueta Bomber">
+                        <h3>Jaqueta Bomber Urban</h3>
+                        <div class="price">R$ 159,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Jaqueta Bomber Urban', 159.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 4: Feminino -->
+                    <div class="product-card" data-name="blusa algodao doce pastel feminino infantil">
+                        <span class="product-tag fem">Infantil</span>
+                        <img src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=400&q=80" alt="Blusa Algodão Doce">
+                        <h3>Blusa Algodão Doce Pastel</h3>
+                        <div class="price">R$ 59,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Blusa Algodão Doce Pastel', 59.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 5: Feminino -->
+                    <div class="product-card" data-name="saia jeans urban kids feminino">
+                        <span class="product-tag fem">Tendência</span>
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=400&q=80" alt="Saia Kids">
+                        <h3>Saia Jeans Urban Kids</h3>
+                        <div class="price">R$ 74,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Saia Jeans Urban Kids', 74.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 6: Masculino (Nova) -->
+                    <div class="product-card" data-name="conjunto moletom comfy masculino infantil">
+                        <span class="product-tag mas">Infantil Masc</span>
+                        <img src="https://images.unsplash.com/photo-1611426169082-96022d56a621?auto=format&fit=crop&w=400&q=80" alt="Conjunto Moletom">
+                        <h3>Conjunto Moletom Comfy</h3>
+                        <div class="price">R$ 129,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Conjunto Moletom Comfy', 129.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 7: Feminino (Nova) -->
+                    <div class="product-card" data-name="vestido floral primavera feminino">
+                        <span class="product-tag fem">Feminino</span>
+                        <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=400&q=80" alt="Vestido Floral">
+                        <h3>Vestido Floral Primavera</h3>
+                        <div class="price">R$ 98,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Vestido Floral Primavera', 98.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 8: Masculino (Nova) -->
+                    <div class="product-card" data-name="camiseta aventura dinossauro masculino">
+                        <span class="product-tag mas">Kids Masc</span>
+                        <img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=400&q=80" alt="Camiseta Dino">
+                        <h3>Camiseta Aventura Dino</h3>
+                        <div class="price">R$ 49,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Camiseta Aventura Dino', 49.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 9: Feminino (Nova) -->
+                    <div class="product-card" data-name="conjunto jardineira jeans fofa feminino">
+                        <span class="product-tag fem">Estilo Fem</span>
+                        <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&w=400&q=80" alt="Jardineira Jeans">
+                        <h3>Conjunto Jardineira Soft</h3>
+                        <div class="price">R$ 114,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Conjunto Jardineira Soft', 114.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 10: Masculino (Nova) -->
+                    <div class="product-card" data-name="camisa linho casual tricot masculino">
+                        <span class="product-tag mas">Juvenil Masc</span>
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80" alt="Camisa Casual">
+                        <h3>Camisa Social Soft Style</h3>
+                        <div class="price">R$ 95,00</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Camisa Social Soft Style', 95.00)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 11: Feminino (Nova) -->
+                    <div class="product-card" data-name="casaco tricot doce inverno feminino">
+                        <span class="product-tag fem">Inverno Fem</span>
+                        <img src="https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?auto=format&fit=crop&w=400&q=80" alt="Casaco Tricot">
+                        <h3>Casaco Tricot Doce Inverno</h3>
+                        <div class="price">R$ 139,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Casaco Tricot Doce Inverno', 139.90)">Adicionar à Sacola</button>
+                    </div>
+
+                    <!-- Peça 12: Unissex -->
+                    <div class="product-card" data-name="tenis urban confort kid unissex sapato">
+                        <span class="product-tag uni">Conforto</span>
+                        <img src="https://images.unsplash.com/photo-1514989940723-e8e5163ccb8b?auto=format&fit=crop&w=400&q=80" alt="Tênis Infantil">
+                        <h3>Tênis Urban Confort Kid</h3>
+                        <div class="price">R$ 149,90</div>
+                        <button class="btn-add-cart" onclick="adicionarAoCarrinho('Tênis Urban Confort Kid', 149.90)">Adicionar à Sacola</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Dinâmica do Carrinho e Finalizador -->
+    <section id="carrinho-secao" class="cart-checkout-section">
+        <div class="container cart-grid">
+            <div class="cart-box">
+                <h3><i class="fa-solid fa-bag-shopping"></i> Sua Sacola de Compras</h3>
+                <div id="cart-items-container">
+                    <p class="empty-cart-msg">Seu carrinho está vazio. Escolha lindas peças no catálogo acima! 🛍️</p>
+                </div>
+                <div class="cart-total-box">
+                    <span>Total do Pedido:</span>
+                    <strong id="cart-total-value">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <div class="checkout-box">
+                <h3><i class="fa-solid fa-clipboard-check"></i> Finalizar Pedido</h3>
+                <p class="form-intro">Preencha os dados abaixo para concluir com segurança.</p>
+                
+                <form id="checkout-form" onsubmit="enviarPedido(event)">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" required placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="entrega">Forma de Recebimento:</label>
+                        <select id="entrega" onchange="toggleEndereco()" required>
+                            <option value="Retirada na Loja (Cidade Nobre)">Retirar na Loja Física (Ipatinga)</option>
+                            <option value="Entrega via Motoboy / Correios">Receber em Casa (Entrega)</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="endereco-group" style="display:none;">
+                        <label for="endereco">Endereço de Entrega:</label>
+                        <input type="text" id="endereco" placeholder="Rua, Número, Bairro, Cidade">
+                    </div>
+                    <div class="form-group">
+                        <label for="pagamento">Forma de Pagamento Preferida:</label>
+                        <select id="pagamento" onchange="toggleCartaoFields()" required>
+                            <option value="Pix">Pix</option>
+                            <option value="Cartão de Crédito">Cartão de Crédito (Retenção Segura)</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+
+                    <div id="card-fields-container" class="secure-card-box" style="display: none;">
+                        <span class="secure-badge"><i class="fa-solid fa-shield-halved"></i> Ambiente Local Seguro SSL</span>
+                        <div class="form-group">
+                            <label for="card-number">Número do Cartão:</label>
+                            <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                        </div>
+                        <div class="form-row-flex">
+                            <div class="form-group half">
+                                <label for="card-expiry">Validade:</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group half">
+                                <label for="card-cvv">CVV:</label>
+                                <input type="password" id="card-cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit-order"><i class="fab fa-whatsapp"></i> Enviar Meu Pedido Pronto</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUICHÊS DE DÚVIDAS FREQUENTES (FAQ ACCORDION) -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Guichê de Dúvidas Frequentes</h2>
+                <p>Clique em cima da pergunta para ver a resposta rapidamente</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Qual é o prazo para retirada na loja física?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O seu pedido fica pronto para retirada na nossa loja no Cidade Nobre em até 2 horas úteis após a confirmação via WhatsApp!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Vocês realizam entregas em outros bairros ou cidades?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Fazemos entregas via motoboy para toda a região de Ipatinga e enviamos via Correios para outras localidades com total segurança.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>É seguro preencher os dados do cartão no site?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Totalmente! Os dados do seu cartão são criptografados localmente no seu aparelho. Eles não são compartilhados por texto no WhatsApp, protegendo suas informações financeiras.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como funciona a troca de peças?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Realizamos trocas na nossa loja física em até 15 dias após a compra, desde que a peça esteja com a etiqueta original e sem sinais de uso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Depoimentos -->
+    <section id="depoimentos" class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que as famílias dizem</h2>
+                <p>Amor e satisfação compartilhados por nossos clientes reais</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"A qualidade das peças da Mundo Meu é impecável! Meu filho fica super confortável e estiloso."</p>
+                    <h4>— Amanda Resende</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Amei a curadoria de peças juvenis! Super difícil achar roupas bonitas nessa idade."</p>
+                    <h4>— Camila Ferreira</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Site prático e liso demais! Fiz meu carrinho aqui, cliquei e já finalizei direto no WhatsApp."</p>
+                    <h4>— Rodrigo Souza</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé Premium -->
+    <footer>
+        <div class="container footer-flex">
+            <div class="footer-left">
+                <p>&copy; 2026 Mundo Meu Store. Todos os direitos reservados.</p>
+                <p class="footer-subtext">Av. Carlos Chagas, 504 - Loja 03, Cidade Nobre, Ipatinga - MG</p>
+            </div>
+            <div class="footer-right">
+                <a href="https://wa.me/5531984992275" target="_blank" class="footer-link btn-whatsapp-footer"><i class="fab fa-whatsapp"></i> (31) 98499-2275</a>
+                <a href="https://www.instagram.com/mundo_meu_store" target="_blank" class="footer-link btn-instagram-footer"><i class="fab fa-instagram"></i> @mundo_meu_store</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function fecharLogin() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // Lógica de Busca Dinâmica no Catálogo
+        function filtrarCatalogo() {
+            const busca = document.getElementById('catalog-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            
+            cards.forEach(card => {
+                const termoProduto = card.getAttribute('data-name');
+                if (termoProduto.includes(busca)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Lógica dos Guichês de Dúvidas (FAQ)
+        function toggleFaq(button) {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+
+        function toggleCartaoFields() {
+            const pagamento = document.getElementById('pagamento').value;
+            const cardBox = document.getElementById('card-fields-container');
+            if (pagamento === 'Cartão de Crédito') {
+                cardBox.style.display = 'block';
+            } else {
+                cardBox.style.display = 'none';
+            }
+        }
+
+        let carrinho = [];
+
+        function adicionarAoCarrinho(nome, preco) {
+            carrinho.push({ nome, preco });
+            atualizarInterfaceCarrinho();
+            document.getElementById('carrinho-secao').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            atualizarInterfaceCarrinho();
+        }
+
+        function atualizarInterfaceCarrinho() {
+            document.getElementById('cart-count').innerText = carrinho.length;
+            const container = document.getElementById('cart-items-container');
+            const totalElement = document.getElementById('cart-total-value');
+            
+            if (carrinho.length === 0) {
+                container.innerHTML = `<p class="empty-cart-msg">Seu carrinho está vazio. Escolha lindas peças no catálogo acima! 🛍️</p>`;
+                totalElement.innerText = "R$ 0,00";
+                return;
+            }
+            
+            let html = '<div class="cart-items-list">';
+            let total = 0;
+            
+            carrinho.forEach((item, index) => {
+                total += item.preco;
+                html += `
+                    <div class="cart-item-row" style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #e2e8f0;">
+                        <span>${item.nome}</span>
+                        <div>
+                            <strong style="margin-right:10px;">R$ ${item.preco.toFixed(2).replace('.', ',')}</strong>
+                            <button onclick="removerDoCarrinho(${index})" style="background:none; border:none; color:#e53e3e; cursor:pointer;"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            totalElement.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function toggleEndereco() {
+            const entregaVal = document.getElementById('entrega').value;
+            const group = document.getElementById('endereco-group');
+            if (entregaVal.includes('Entrega')) {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+            }
+        }
+
+        function enviarPedido(event) {
+            event.preventDefault();
+            if (carrinho.length === 0) {
+                alert("Sua sacola está vazia!");
+                return;
+            }
+            
+            const nome = document.getElementById('nome').value;
+            const entrega = document.getElementById('entrega').value;
+            const endereco = document.getElementById('endereco').value || 'Não aplicável';
+            const pagamento = document.getElementById('pagamento').value;
+            
+            let metodoTexto = pagamento === 'Cartão de Crédito' ? "Cartão de Crédito (Criptografado no Site)" : pagamento;
+
+            let listaProdutos = '';
+            let total = 0;
+            carrinho.forEach((item, idx) => {
+                listaProdutos += `${idx + 1}. ${item.nome} (R$ ${item.preco.toFixed(2).replace('.', ',')})\n`;
+                total += item.preco;
+            });
+            
+            const textoMensagem = `Olá Mundo Meu Store! Novo pedido feito pelo site:\n\n` +
+                                 `👤 *Nome:* ${nome}\n` +
+                                 `📦 *Forma:* ${entrega}\n` +
+                                 `📍 *Endereço:* ${endereco}\n` +
+                                 `💳 *Pagamento:* ${metodoTexto}\n\n` +
+                                 `🛍 *Itens:*\n${listaProdutos}\n` +
+                                 `💰 *Total:* R$ ${total.toFixed(2).replace('.', ',')}`;
+                                 
+            window.open(`https://wa.me/5531984992275?text=${encodeURIComponent(textoMensagem)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
